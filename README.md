@@ -6,9 +6,9 @@ Installation
 ``` 
 $ go get -u -v github.com/kusky33/giftbog
 ```
-
 Usage
 -----
+If you have "$HOME/go/bin/" exported run:
 ```
-$ go run giftbog
+$ giftbog
 ```
