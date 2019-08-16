@@ -4,7 +4,7 @@ A simple command line interface for the r/FashionReps repfams to scrape Superbuy
 Installation
 ------------
 ```
-go get -u -v github.com/kusky33/GiftBog
+go get -u -v github.com/kusky33/giftbog
 ```
 
 Usage
