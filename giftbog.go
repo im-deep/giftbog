@@ -27,7 +27,7 @@ func randomAgent() string {
 func main() {
 	var (
 		FashionReps = "https://www.reddit.com/r/FashionReps/"
-		GiftBags    = "search/?q=flair_name%3A\"GIFTBAG\"&restrict_sr=1&t=hour"
+		GiftBags    = "search?q=flair_name%3A\"GIFTBAG\"&restrict_sr=1&t=hour&sort=new"
 		UserName    = os.Getenv("USER")
 		flagNoColor = flag.Bool("no-color", false, "Disable color output")
 	)
