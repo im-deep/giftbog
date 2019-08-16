@@ -1,4 +1,4 @@
-# GiftBog ![Language](https://img.shields.io/github/languages/top/kusky33/GiftBog?style=flat)
+# GiftBog ![Language](https://img.shields.io/badge/language-Go-blue)
 A simple command line interface for the r/FashionReps users to scrape Superbuy's giftbags.
 
 Installation
