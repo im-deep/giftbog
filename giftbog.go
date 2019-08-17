@@ -61,7 +61,6 @@ func main() {
 				exec.Command("xdg-open", FashionReps+GiftBags).Start()
 			} else {
 				fmt.Println("[STATUS]: no giftbags at the moment")
-				//test
 			}
 		})
 	})
