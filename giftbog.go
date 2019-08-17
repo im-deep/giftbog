@@ -44,20 +44,18 @@ func main() {
 		"|::.. . |            |::.. .  /           \n" +
 		"`-------'            `-------'            \n")
 	fmt.Println(logo)
-	color.Set(color.FgWhite)
 	c := colly.NewCollector()
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", randomAgent())
-		fmt.Println("[STATUS]: fetching giftbags")
+		fmt.Println("[STATUS]:", color.Set(color.FgWhite), " fetching giftbags")
 	})
 	c.OnError(func(_ *colly.Response, err error) {
 		fmt.Println("[ERROR]:", err)
 	})
-	c.OnHTML("span", func(e *colly.HTMLElement) {
-		e.ForEach("span", func(_ int, elem *colly.HTMLElement) {
+	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
+		e.ForEach("href", func(_ int, elem *colly.HTMLElement) {
 			if strings.Contains(elem.Text, "GIFTBAG") {
-				fmt.Println("[STATUS]: fetched a new giftbag", elem.Text)
-				fmt.Println("[STATUS]: go unwrap your mf gifts", UserName)
+				fmt.Println("[STATUS]: new giftbag for you ", UserName)
 				exec.Command("xdg-open", FashionReps+GiftBags).Start()
 			} else {
 				fmt.Println("[STATUS]: no giftbags at the moment")
