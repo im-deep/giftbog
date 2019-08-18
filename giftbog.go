@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/gocolly/colly"
@@ -44,11 +45,17 @@ func main() {
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", randomAgent())
 		cyan.Printf("%s ", "[STATUS]:")
-		fmt.Printf("fetching giftbags...\n")
+		fmt.Printf("inbound into customs...\n")
+		time.Sleep(1900 * time.Millisecond)
+		cyan.Printf("%s ", "[STATUS]:")
+		fmt.Printf("seizing your haul...\n")
+		time.Sleep(800 * time.Millisecond)
+		cyan.Printf("%s ", "[STATUS]:")
+		fmt.Printf("legit checking...\n")
 	})
 	c.OnError(func(_ *colly.Response, err error) {
 		red.Printf("%s ", "[ERROR]:")
-		fmt.Printf("%s\n", err)
+		fmt.Printf("%s\n\n", "your connection is not 1:1!")
 		os.Exit(1)
 	})
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
@@ -64,20 +71,29 @@ func main() {
 			links = append(links, link)
 		}
 	})
-
 	c.Visit(FashionReps)
+	cyan.Printf("%s ", "[STATUS]:")
+	fmt.Printf("calling you out...\n")
+	time.Sleep(500 * time.Millisecond)
 	if len(links) > 1 {
 		cyan.Printf("%s ", "[STATUS]:")
-		fmt.Printf("found %d new giftbags\n", len(links))
+		fmt.Printf("found %d new giftbags!\n", len(links))
+	} else {
+		if len(links) == 0 {
+			cyan.Printf("%s ", "[STATUS]:")
+			fmt.Printf("%s", "sry fam, no giftbags right now")
+		}
+		cyan.Printf("%s ", "[STATUS]:")
+		fmt.Printf("found %d new giftbag!\n", len(links))
 	}
 	if len(links) != 0 {
-		i := 1
 		for _, link := range links {
 			if len(link) > 3 {
-				fmt.Println("-", link)
-				i++
+				cyan.Printf("%s", "[LINK]:")
+				fmt.Printf("%s\n", link)
 			}
 		}
 	}
 	fmt.Println("")
+	os.Exit(0)
 }
