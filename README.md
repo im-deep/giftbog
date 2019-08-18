@@ -14,5 +14,5 @@ $ giftbog
 ```
 Otherwise: 
 ```
-$ echo -e "RTFM: $(curl -s "https://golang.org/doc/code.html#GOPATH" |grep "export P"|head -c-4|tail -c-3)"
+$ echo -e "RTFM: $(curl -s "https://golang.org/doc/code.html#GOPATH" | grep "export P" | head -c-5 | tail -c-38)"
 ```
