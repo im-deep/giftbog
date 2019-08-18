@@ -24,6 +24,7 @@ func randomAgent() string {
 
 func main() {
 	const FRurl = "https://www.reddit.com/r/FashionReps/search?q=flair_name%3A\"GIFTBAG\"&restrict_sr=&t=hour1&sort=new"
+	var links []string
 	color.Set(color.FgCyan)
 	logo := fmt.Sprintf("" +
 		" _______ __  ___ __   _______             \n" +
@@ -34,6 +35,7 @@ func main() {
 		"|::.. . |            |::.. .  /           \n" +
 		"`-------'            `-------'            \n")
 	fmt.Println(logo)
+	color.Unset()
 	c := colly.NewCollector()
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", randomAgent())
@@ -42,13 +44,18 @@ func main() {
 	c.OnError(func(_ *colly.Response, err error) {
 		fmt.Println("[ERROR]:", err)
 	})
-	var links []string
 	c.OnHTML("a[data-click-id]", func(e *colly.HTMLElement) {
 		link := e.Attr("href")
 		if !strings.Contains(link, "/sharepack/") {
 			return
 		}
-		links = append(links, link)
+		if len(links) > 0 {
+			if links[len(links)-1] != link {
+				links = append(links, link)
+			}
+		} else {
+			links = append(links, link)
+		}
 	})
 	c.Visit(FRurl)
 	for _, link := range links {
