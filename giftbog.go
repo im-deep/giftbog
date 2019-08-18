@@ -82,9 +82,10 @@ func main() {
 		if len(links) == 0 {
 			cyan.Printf("%s ", "[STATUS]:")
 			fmt.Printf("%s", "sry fam, no giftbags right now")
+		} else {
+			cyan.Printf("%s ", "[STATUS]:")
+			fmt.Printf("found %d new giftbag!\n", len(links))
 		}
-		cyan.Printf("%s ", "[STATUS]:")
-		fmt.Printf("found %d new giftbag!\n", len(links))
 	}
 	if len(links) != 0 {
 		for _, link := range links {
