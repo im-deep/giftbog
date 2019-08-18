@@ -81,7 +81,7 @@ func main() {
 	} else {
 		if len(links) == 0 {
 			cyan.Printf("%s ", "[STATUS]:")
-			fmt.Printf("%s", "sry fam, no giftbags right now")
+			fmt.Printf("%s", "sry fam, no giftbags right now\n")
 		} else {
 			cyan.Printf("%s ", "[STATUS]:")
 			fmt.Printf("found %d new giftbag!\n", len(links))
