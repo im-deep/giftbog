@@ -23,7 +23,7 @@ func randomAgent() string {
 }
 
 func main() {
-	const FRurl = "https://www.reddit.com/r/FashionReps/search?q=flair_name%3A\"GIFTBAG\"&restrict_sr=1&sort=new" //&t=hour
+	const FRurl = "https://www.reddit.com/r/FashionReps/search?q=flair_name%3A\"GIFTBAG\"&restrict_sr=&t=hour1&sort=new"
 	color.Set(color.FgCyan)
 	logo := fmt.Sprintf("" +
 		" _______ __  ___ __   _______             \n" +
@@ -51,7 +51,6 @@ func main() {
 		links = append(links, link)
 	})
 	c.Visit(FRurl)
-	// make sure the slice isn't empty and print the valid ones
 	for _, link := range links {
 		if len(link) > 5 {
 			fmt.Println("[GIFTBAG]:", link)
