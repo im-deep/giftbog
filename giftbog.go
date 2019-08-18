@@ -66,8 +66,10 @@ func main() {
 	})
 
 	c.Visit(FashionReps)
-	cyan.Printf("%s ", "[STATUS]:")
-	fmt.Printf("found %d new giftbags\n", len(links))
+	if len(links) > 1 {
+		cyan.Printf("%s ", "[STATUS]:")
+		fmt.Printf("found %d new giftbags\n", len(links))
+	}
 	if len(links) != 0 {
 		i := 1
 		for _, link := range links {
