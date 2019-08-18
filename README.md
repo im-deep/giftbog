@@ -6,8 +6,3 @@ Installation
 ``` 
 $ go get -u -v github.com/kusky33/giftbog
 ```
-Usage
------
-```
-$ giftbog
-```
