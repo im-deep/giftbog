@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"strings"
 
 	"github.com/fatih/color"
@@ -15,7 +16,7 @@ func randomAgent() string {
 		upchars  = strings.ToUpper(lowchars)
 		chars    = lowchars + upchars
 	)
-	b := make([]byte, rand.Intn(5)+20)
+	b := make([]byte, rand.Intn(20)+5)
 	for i := range b {
 		b[i] = chars[rand.Intn(len(chars))]
 	}
@@ -23,8 +24,10 @@ func randomAgent() string {
 }
 
 func main() {
-	const FRurl = "https://www.reddit.com/r/FashionReps/search?q=flair_name%3A\"GIFTBAG\"&restrict_sr=&t=hour1&sort=new"
+	const FashionReps = "https://www.reddit.com/r/FashionReps/search?q=flair_name%3A\"GIFTBAG\"&restrict_sr=1&sort=new&t=hour"
 	var links []string
+	cyan := color.New(color.FgCyan)
+	red := color.New(color.FgRed)
 	color.Set(color.FgCyan)
 	logo := fmt.Sprintf("" +
 		" _______ __  ___ __   _______             \n" +
@@ -34,17 +37,21 @@ func main() {
 		"|:  1   |            |:  1    \\    |_____|\n" +
 		"|::.. . |            |::.. .  /           \n" +
 		"`-------'            `-------'            \n")
+	print("\033[H\033[2J")
 	fmt.Println(logo)
 	color.Unset()
 	c := colly.NewCollector()
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", randomAgent())
-		fmt.Println("[STATUS]: fetching giftbags...")
+		cyan.Printf("%s ", "[STATUS]:")
+		fmt.Printf("fetching giftbags...\n")
 	})
 	c.OnError(func(_ *colly.Response, err error) {
-		fmt.Println("[ERROR]:", err)
+		red.Printf("%s ", "[ERROR]:")
+		fmt.Printf("%s\n", err)
+		os.Exit(1)
 	})
-	c.OnHTML("a[data-click-id]", func(e *colly.HTMLElement) {
+	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
 		link := e.Attr("href")
 		if !strings.Contains(link, "/sharepack/") {
 			return
@@ -57,10 +64,18 @@ func main() {
 			links = append(links, link)
 		}
 	})
-	c.Visit(FRurl)
-	for _, link := range links {
-		if len(link) > 5 {
-			fmt.Println("[GIFTBAG]:", link)
+
+	c.Visit(FashionReps)
+	cyan.Printf("%s ", "[STATUS]:")
+	fmt.Printf("found %d new giftbags\n", len(links))
+	if len(links) != 0 {
+		i := 1
+		for _, link := range links {
+			if len(link) > 3 {
+				fmt.Println("-", link)
+				i++
+			}
 		}
 	}
+	fmt.Println("")
 }
