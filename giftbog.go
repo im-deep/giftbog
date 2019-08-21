@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/fatih/color"
 	"github.com/gocolly/colly"
@@ -27,17 +26,21 @@ func randomAgent() string {
 func main() {
 	const FashionReps = "https://www.reddit.com/r/FashionReps/search?q=flair_name%3A\"GIFTBAG\"&restrict_sr=1&sort=new&t=hour"
 	var links []string
+	var quotes = []string{"inbound into customs...", "seizing your haul...", "legit checking...", "calling you out...",
+		 								    "checking washtags...", "declaring 19$ for 20kg...", "taking QC pics...",  "GP'ing the peppa pig flip flops...",
+									      "tracking the package...", "getting rid of the shoebox", "using simple packaging...", "uploading with QCsuite...",
+											  "lurking on goat.pet/fr/sb", "saving money for the haul...", "flexin on 'em...", "making ur broke ass look like u got money..."}
 	cyan := color.New(color.FgCyan)
 	red := color.New(color.FgRed)
 	color.Set(color.FgCyan)
 	logo := fmt.Sprintf("" +
-		" _______ __  ___ __   _______             \n" +
-		"|   _   |__.'  _|  |_|   _   .-----.-----.\n" +
-		"|.  |___|  |   _|   _|.  1   |  _  |  _  |\n" +
-		"|.  |   |__|__| |____|.  _   |_____|___  |\n" +
-		"|:  1   |            |:  1    \\    |_____|\n" +
-		"|::.. . |            |::.. .  /           \n" +
-		"`-------'            `-------'            \n")
+	" _______ __  ___ __   _______             \n" +
+	"|   _   |__.'  _|  |_|   _   .-----.-----.\n" +
+	"|.  |___|  |   _|   _|.  1   |  _  |  _  |\n" +
+	"|.  |   |__|__| |____|.  _   |_____|___  |\n" +
+	"|:  1   |            |:  1    \\    |_____|\n"+
+	"|::.. . |            |::.. .  /           \n" +
+	"`-------'            `-------'            \n")
 	print("\033[H\033[2J")
 	fmt.Println(logo)
 	color.Unset()
@@ -45,13 +48,7 @@ func main() {
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", randomAgent())
 		cyan.Printf("%s ", "[STATUS]:")
-		fmt.Printf("inbound into customs...\n")
-		time.Sleep(1900 * time.Millisecond)
-		cyan.Printf("%s ", "[STATUS]:")
-		fmt.Printf("seizing your haul...\n")
-		time.Sleep(800 * time.Millisecond)
-		cyan.Printf("%s ", "[STATUS]:")
-		fmt.Printf("legit checking...\n")
+		fmt.Printf(quotes[rand.Intn(len(quotes))]+"\n")
 	})
 	c.OnError(func(_ *colly.Response, err error) {
 		red.Printf("%s ", "[ERROR]:")
@@ -72,9 +69,6 @@ func main() {
 		}
 	})
 	c.Visit(FashionReps)
-	cyan.Printf("%s ", "[STATUS]:")
-	fmt.Printf("calling you out...\n")
-	time.Sleep(500 * time.Millisecond)
 	if len(links) > 1 {
 		cyan.Printf("%s ", "[STATUS]:")
 		fmt.Printf("found %d new giftbags!\n", len(links))
