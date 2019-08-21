@@ -10,7 +10,7 @@ $ go get -u -v github.com/kusky33/giftbog
 Code of conduct
 ---------------
 This tool was made for fun, not for profit.  
-Keep it this way and don't run it as a cronjob, for f*ck's sake.
+Keep it this way and don't run it as a cronjob for fuck's sake.
 - Share your giftbags on r/FashionReps 
 - Maximum one request per day or haul
 - Offer fair and just remuneration to Superbuy
