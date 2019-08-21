@@ -90,7 +90,7 @@ func main() {
 	if len(links) != 0 {
 		for _, link := range links {
 			if len(link) > 3 {
-				cyan.Printf("%s", "[LINK]:")
+				cyan.Printf("%s", "[LINK]: ")
 				fmt.Printf("%s\n", link)
 			}
 		}
