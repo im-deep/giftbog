@@ -29,7 +29,7 @@ func main() {
 	var quotes = []string{
 		"inbound into customs...", "seizing your haul...", "legit checking...", "calling you out...",
 		"checking washtags...", "declaring 19$ for 20kg...", "taking QC pics...", "GP'ing the peppa pig flip flops...",
-		"tracking the package...", "getting rid of the shoebox", "using simple packaging...", "uploading with QCsuite...",
+		"tracking the package...", "getting rid of the shoebox...", "using simple packaging...", "uploading with QCsuite...",
 		"lurking on goat.pet/fr/sb", "saving money for the haul...", "flexin on 'em...", "making ur broke ass look like u got money..."}
 	cyan := color.New(color.FgCyan)
 	red := color.New(color.FgRed)
