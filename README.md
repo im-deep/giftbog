@@ -1,7 +1,7 @@
 # GiftBog ![Language](https://img.shields.io/badge/language-Go-blue?style=plastic)
 A simple command-line interface for the r/FashionReps repfams to scrape Superbuy's giftbags.
 
-![Preview](https://imgur.com/2UurkhM)
+![Preview](https://i.imgur.com/2UurkhM.png)
 
 
 Installation
