@@ -1,4 +1,4 @@
-# GiftBog ![License](https://img.shields.io/github/license/kusky33/giftbog?style=flat-square)
+# GiftBog 
 A simple command-line interface for the r/FashionReps repfams to scrape Superbuy's giftbags.
 
 ![Preview](https://i.imgur.com/2UurkhM.png)
