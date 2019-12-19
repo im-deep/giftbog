@@ -46,16 +46,19 @@ func main() {
 	fmt.Println(logo)
 	color.Unset()
 	c := colly.NewCollector()
+	
 	c.OnRequest(func(r *colly.Request) {
 		r.Headers.Set("User-Agent", randomAgent())
 		cyan.Printf("%s ", "[STATUS]:")
 		fmt.Printf(quotes[rand.Intn(len(quotes))] + "\n")
 	})
+	
 	c.OnError(func(_ *colly.Response, err error) {
 		red.Printf("%s ", "[ERROR]:")
 		fmt.Printf("%s\n\n", "your connection is not 1:1!")
 		os.Exit(1)
 	})
+	
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
 		link := e.Attr("href")
 		if !strings.Contains(link, "/sharepack/") {
@@ -69,6 +72,7 @@ func main() {
 			links = append(links, link)
 		}
 	})
+	
 	c.Visit(FashionReps)
 	if len(links) > 1 {
 		cyan.Printf("%s ", "[STATUS]:")
@@ -82,6 +86,7 @@ func main() {
 			fmt.Printf("found %d new giftbag!\n", len(links))
 		}
 	}
+	
 	if len(links) != 0 {
 		for _, link := range links {
 			if len(link) > 3 {
@@ -90,6 +95,7 @@ func main() {
 			}
 		}
 	}
+	
 	fmt.Println("")
 	os.Exit(0)
 }
