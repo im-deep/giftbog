@@ -1,5 +1,5 @@
 # GiftBog 
-A simple command-line interface for the r/FashionReps repfams to scrape Superbuy's giftbags.
+A simple CLI for the r/FashionReps repfams to scrape Superbuy's giftbags.
 
 Installation
 ------------
