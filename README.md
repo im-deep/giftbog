@@ -4,7 +4,7 @@ A simple CLI for the r/FashionReps repfams to scrape Superbuy's giftbags.
 Installation
 ------------
 ``` 
-$ go get -u -v github.com/kusky33/giftbog
+$ go get -u -v github.com/im-deep/giftbog
 ```
 
 Code of conduct
