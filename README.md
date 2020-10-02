@@ -1,5 +1,5 @@
 # GiftBog 
-A simple CLI for the r/FashionReps repfams to scrape Superbuy's giftbags.
+A simple tool for the r/FashionReps repfams to scrape Superbuy's giftbags.
 
 Installation
 ------------
